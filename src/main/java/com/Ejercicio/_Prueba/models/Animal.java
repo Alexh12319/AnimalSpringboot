@@ -1,10 +1,22 @@
 package com.Ejercicio._Prueba.models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 
+@Entity
+@Table(name = "Animal")
 public class Animal {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  //MySql genera el ID automaticamente
     int id;
+
     @NotBlank(message = "El nombre no puede estar vacío")
     String name;
     @Positive(message = "La vida media no puede ser negativa o 0")
