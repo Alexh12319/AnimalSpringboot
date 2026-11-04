@@ -4,7 +4,7 @@ package com.Ejercicio._Prueba.service;
 import com.Ejercicio._Prueba.models.Animal;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 public interface AnimalService {
 

@@ -2,7 +2,8 @@ package com.Ejercicio._Prueba.controllers;
 
 import com.Ejercicio._Prueba.models.Animal;
 
-import com.Ejercicio._Prueba.service.AnimalMemoryService;
+
+import com.Ejercicio._Prueba.service.AnimalService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,8 +19,12 @@ import jakarta.validation.Valid;
 public class AnimalController{
 
     @Autowired
+<<<<<<< HEAD
 
     private AnimalMemoryService as;
+=======
+    private AnimalService as;
+>>>>>>> 5dbcc59 (Persistencia de datos SQL - Ejercicio 4)
 
     @GetMapping("/animals")
     public String animales(Model model) {

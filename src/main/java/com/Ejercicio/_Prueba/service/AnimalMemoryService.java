@@ -1,11 +1,14 @@
 package com.Ejercicio._Prueba.service;
 import com.Ejercicio._Prueba.models.Animal;
 import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.Profile;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 @Service
+@Profile("memory")
 public class AnimalMemoryService implements AnimalService{
     ArrayList<Animal> animales = new ArrayList<>(
             Arrays.asList(new Animal(1, "Dodo", 50, true), new Animal(2, "Perro", 10, false)));
