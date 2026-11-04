@@ -19,12 +19,7 @@ import jakarta.validation.Valid;
 public class AnimalController{
 
     @Autowired
-<<<<<<< HEAD
-
-    private AnimalMemoryService as;
-=======
     private AnimalService as;
->>>>>>> 5dbcc59 (Persistencia de datos SQL - Ejercicio 4)
 
     @GetMapping("/animals")
     public String animales(Model model) {

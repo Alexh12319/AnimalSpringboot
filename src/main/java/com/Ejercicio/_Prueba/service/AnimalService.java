@@ -18,4 +18,4 @@ public interface AnimalService {
 
     boolean deleteAnimal(int id);
 }
->>>>>>> ccfbd7ccd5b89976a89941ab3ef7c5fd4a1876cd
+
