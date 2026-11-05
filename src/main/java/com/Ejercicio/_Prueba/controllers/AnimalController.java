@@ -2,7 +2,6 @@ package com.Ejercicio._Prueba.controllers;
 
 import com.Ejercicio._Prueba.models.Animal;
 
-
 import com.Ejercicio._Prueba.service.AnimalService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,8 +44,7 @@ public class AnimalController{
     }
 
     @PostMapping("/animals/create")
-    public String crearAnimal(@Valid @ModelAttribute("animal") Animal animal,
-                              BindingResult bindingResult){
+    public String crearAnimal(@Valid @ModelAttribute("animal") Animal animal, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             return "create";
         }else{

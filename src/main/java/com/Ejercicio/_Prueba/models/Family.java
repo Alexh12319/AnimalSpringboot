@@ -15,11 +15,14 @@ public class Family {
     @GeneratedValue(strategy = GenerationType.IDENTITY)  //MySql genera el ID automaticamente
     private int id;
     private String name;
-    @OneToMany(mappedBy = "animal",
+    @OneToMany(mappedBy = "family",
                cascade = CascadeType.ALL,
                orphanRemoval = true)
     private ArrayList<Animal> animals;
 
+    public Family(){
+
+    }
     public Family(int id, String name){
         this.id = id;
         this.name = name;
