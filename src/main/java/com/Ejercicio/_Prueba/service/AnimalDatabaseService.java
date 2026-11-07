@@ -1,5 +1,6 @@
 package com.Ejercicio._Prueba.service;
 
+import com.Ejercicio._Prueba.interfaces.AnimalService;
 import com.Ejercicio._Prueba.models.Animal;
 import com.Ejercicio._Prueba.repository.AnimalRepository;
 import org.springframework.context.annotation.Profile;

@@ -6,7 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.CascadeType;
-import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Family {
@@ -18,22 +18,23 @@ public class Family {
     @OneToMany(mappedBy = "family",
                cascade = CascadeType.ALL,
                orphanRemoval = true)
-    private ArrayList<Animal> animals;
+    private List<Animal> animals;
 
     public Family(){
 
     }
+
+
     public Family(int id, String name){
         this.id = id;
         this.name = name;
-        animals = new ArrayList<>();
     }
 
-    public ArrayList<Animal> getAnimals() {
+    public List<Animal> getAnimals() {
         return animals;
     }
 
-    public void setAnimals(ArrayList<Animal> animals) {
+    public void setAnimals(List<Animal> animals) {
         this.animals = animals;
     }
 

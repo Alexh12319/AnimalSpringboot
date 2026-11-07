@@ -1,4 +1,5 @@
-package com.Ejercicio._Prueba.service;
+
+package com.Ejercicio._Prueba.interfaces;
 
 import com.Ejercicio._Prueba.models.Family;
 

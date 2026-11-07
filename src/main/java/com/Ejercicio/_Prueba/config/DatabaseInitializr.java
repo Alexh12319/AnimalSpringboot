@@ -1,7 +1,9 @@
 package com.Ejercicio._Prueba.config;
 
 import com.Ejercicio._Prueba.models.Animal;
+import com.Ejercicio._Prueba.models.Family;
 import com.Ejercicio._Prueba.repository.AnimalRepository;
+import com.Ejercicio._Prueba.repository.FamilyRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +14,7 @@ import org.springframework.context.annotation.Profile;
 public class DatabaseInitializr {
 
     @Bean
-    CommandLineRunner initDatabase(AnimalRepository repository) {
+    CommandLineRunner initDatabase(AnimalRepository repository, FamilyRepository repositoryFam) {
         return args -> {
             if (repository.count() == 0) {
                 Animal a1 = new Animal();
@@ -34,6 +36,21 @@ public class DatabaseInitializr {
                 repository.save(a2);
                 repository.save(a3);
             }
+            if (repositoryFam.count() == 0) {
+                Family f1 = new Family();
+                f1.setName("Mamíferos");
+
+                Family f2 = new Family();
+                f2.setName("Aves");
+
+                Family f3 = new Family();
+                f3.setName("Reptiles");
+
+                repositoryFam.save(f1);
+                repositoryFam.save(f2);
+                repositoryFam.save(f3);
+            }
         };
     }
+
 }

@@ -1,8 +1,7 @@
 package com.Ejercicio._Prueba.controllers;
 
 import com.Ejercicio._Prueba.models.Animal;
-
-import com.Ejercicio._Prueba.service.AnimalService;
+import com.Ejercicio._Prueba.interfaces.AnimalService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,7 +22,7 @@ public class AnimalController{
     @GetMapping("/animals")
     public String animales(Model model) {
         model.addAttribute("animales", as.getAnimals());
-        return "animals";
+        return "Animals/animals";
     }
 
     @GetMapping("animals/details/{id}")
@@ -32,7 +31,7 @@ public class AnimalController{
         String response = "redirect:/animals";
         if(animal != null){
             model.addAttribute("animal", animal);
-            response = "details";
+            response = "Animals/details";
         }
         return response;
     }
@@ -40,13 +39,13 @@ public class AnimalController{
     @GetMapping("/animals/create")
     public String crearAnimal(Model model){
         model.addAttribute("animal", new Animal());
-        return "create";
+        return "Animals/create";
     }
 
     @PostMapping("/animals/create")
     public String crearAnimal(@Valid @ModelAttribute("animal") Animal animal, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
-            return "create";
+            return "Animals/create";
         }else{
             as.addAnimal(animal);
             //return "/animals";
@@ -57,25 +56,24 @@ public class AnimalController{
     @GetMapping("/animals/edit/{id}")
     public String EditarAnimal(Model model, @PathVariable int id){
         model.addAttribute("animal", as.getAnimal(id));
-        return "edit";
+        return "Animals/edit";
     }
 
     @PostMapping("/animals/edit")
     public String EditarAnimal(@Valid @ModelAttribute("animal") Animal animal, BindingResult bindingResult){
         String resultado = "redirect:/animals";
         if(bindingResult.hasErrors()){
-            resultado = "edit";
+            resultado = "Animals/edit";
         }else{
-
             as.editAnimal(animal);
         }
         return resultado;
     }
-
+//------Queda eliminar
     @GetMapping("/animals/delete/{id}")
     public String borrarAnimal(Model model, @PathVariable int id){
         model.addAttribute("animal", as.getAnimal(id)); //Recibe animal
-        return "delete";
+        return "Animals/delete";
     }
 
     @PostMapping("/animals/delete")
