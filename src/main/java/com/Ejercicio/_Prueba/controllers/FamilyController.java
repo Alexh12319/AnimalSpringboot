@@ -1,5 +1,6 @@
 package com.Ejercicio._Prueba.controllers;
 
+import com.Ejercicio._Prueba.interfaces.AnimalService;
 import com.Ejercicio._Prueba.interfaces.FamilyService;
 import com.Ejercicio._Prueba.models.Animal;
 import com.Ejercicio._Prueba.models.Family;
@@ -18,6 +19,8 @@ public class FamilyController {
 
     @Autowired
     private FamilyService fs;
+    @Autowired
+    private AnimalService as;
 
     @GetMapping("/families")
     public String animales(Model model){
@@ -31,7 +34,7 @@ public class FamilyController {
         Family littleFamily = fs.getFamily(id);
         String response = "redirect:/families";
         if(littleFamily != null){
-            model.addAttribute("animal", littleFamily);
+            model.addAttribute("family", littleFamily);
             response = "Family/familyDetails";
         }
         return response;
@@ -64,7 +67,7 @@ public class FamilyController {
     public String EditFamily(@Valid @ModelAttribute("family") Family family, BindingResult bindingResult){
         String resultado = "redirect:/families";
         if(bindingResult.hasErrors()){
-            resultado = "families/familyEdit";
+            resultado = "Family/familyEdit";
         }else{
             fs.editFamily(family);
         }
@@ -79,7 +82,14 @@ public class FamilyController {
 
     @PostMapping("/families/familyDelete")
     public String deleteFamily(@ModelAttribute("family") Family family){
-        fs.deleteFamily(family.getId()); //Borra Family
+        //TODO: Vaciar antes de borrar ->
+        Family familiaExistente = fs.getFamily(family.getId());
+
+        for (Animal a : familiaExistente.getAnimals()) {
+            a.setFamily(null);
+            as.addAnimal(a);
+        }
+        fs.deleteFamily(family.getId());
         return "redirect:/families";
     }
 

@@ -21,6 +21,7 @@
         <th>Nombre</th>
         <th>Vida Media</th>
         <th>Extinto</th>
+        <th>Familia</th>
     </tr>
     </thead>
 
@@ -30,12 +31,13 @@
         <td th:text="${animal.getName()}"></td>
         <td th:text="${animal.getAverageLifeSpan()}"></td>
         <td th:text="${animal.getExtinct()}"></td>
+        <td th:text="${animal.getFamily() != null} ? ${animal.getFamily().getName()} : '--'"></td>
         <td><a class="btn btn-warning" th:href="@{/animals/details/{id}(id=${animal.getId()})}">Detalles</a></td>
         <td><a class="btn btn-success" th:href="@{/animals/edit/{id}(id=${animal.getId()})}">Editar</a></td>
         <td><a class="btn btn-danger" th:href="@{/animals/delete/{id}(id=${animal.getId()})}">Borrar</a></td>
     </tr>
     </tbody>
 </table>
-
+<a th:href="@{/}">volver</a>
 </body>
 </html>

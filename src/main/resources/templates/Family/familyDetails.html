@@ -14,12 +14,21 @@
 </header>
 
 <ul>
-    <li><span>Nombre: </span><span th:text="${animal.getName()}"></span></li>
-    <li><span>Id: </span><span th:text="${animal.getId()}"></span></li>
+    <li><span>Nombre: </span><span th:text="${family.getName()}"></span></li>
+    <li><span>Id: </span><span th:text="${family.getId()}"></span></li>
 </ul>
 
 <a class="btn btn-success" th:href="@{/families}">Volver</a>
 
+<header class="bg-dark text-white text-center p-4">
+    <h2>Animales Asociados</h2>
+    <ul>
+        <li th:each="animal : ${family.getAnimals()}">
+            <span th:text="${animal.getName()}"></span>
+            vida media: <span th:text="${animal.getAverageLifeSpan()}"></span>
+        </li>
+    </ul>
+</header>
 
 </body>
 </html>

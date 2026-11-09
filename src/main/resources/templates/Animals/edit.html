@@ -26,6 +26,17 @@
     <label class="from-label">Extinto:</label>
     <input class="from-check-input" type="checkbox" th:field="*{extinct}">
     <br>
+    <br>
+
+    <label class="form-label">Clase:</label>
+    <select class="form-select" name="family.id">
+        <option value="">Sin familia</option>
+        <option th:each="fam : ${familias}"
+                th:value="${fam.id}"
+                th:text="${fam.name}"
+                th:selected="${animal.getFamily() != null && animal.getFamily().getId() == fam.getId()}"></option>
+    </select>
+    <br>
     <button class="btn btn-success" type="submit" th:href="@{/animals}">Aplicar</button>
 </form>
 

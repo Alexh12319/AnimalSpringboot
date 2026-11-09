@@ -31,7 +31,16 @@
         <input class="from-check-input" type="checkbox" th:field="*{extinct}">
         <br>
         <br>
-        <input class="btn btn-success" type="submit" value="Crear">
+
+        <label class="form-label">Clase:</label>
+        <select class="form-select" name="family.id">
+            <option value="">Sin familia</option>
+            <option th:each="fam : ${familias}"
+                    th:value="${fam.id}"
+                    th:text="${fam.name}"></option>
+        </select>
+
+    <input class="btn btn-success" type="submit" value="Crear">
 </form>
 
 </body>

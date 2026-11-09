@@ -22,28 +22,29 @@ public class Animal {
     int averageLifeSpan;
     boolean extinct;
 
-    public Animal(){}
+    public Animal() {
+    }
 
-    public Animal(int id, String name, int averageLifeSpan, boolean extinct){
+    public Animal(int id, String name, int averageLifeSpan, boolean extinct) {
         this.id = id;
         this.name = name;
         this.averageLifeSpan = averageLifeSpan;
         this.extinct = extinct;
     }
 
-    public int getId(){
+    public int getId() {
         return id;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public int getAverageLifeSpan(){
+    public int getAverageLifeSpan() {
         return averageLifeSpan;
     }
 
-    public boolean getExtinct(){
+    public boolean getExtinct() {
         return extinct;
     }
 
@@ -63,8 +64,19 @@ public class Animal {
         this.extinct = extinct;
     }
 
+    //Así rescato la familia del propio animal
+    public Family getFamily() {
+        return family;
+    }
+
+    public void setFamily(Family family) {
+        this.family = family;
+    }
+
+
     @Override
     public String toString() {
-        return "id: " + id + " Name: " + name + " Average life span: " + averageLifeSpan + " extinct: " + extinct;
+        return "id: " + id + " Name: " + name + " Average life span: " + averageLifeSpan + " extinct: " + extinct + " family: " + family;
     }
+
 }

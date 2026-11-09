@@ -16,8 +16,8 @@ public class Family {
     private int id;
     private String name;
     @OneToMany(mappedBy = "family",
-               cascade = CascadeType.ALL,
-               orphanRemoval = true)
+                cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+                orphanRemoval = false)
     private List<Animal> animals;
 
     public Family(){

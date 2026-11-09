@@ -1,5 +1,6 @@
 package com.Ejercicio._Prueba.controllers;
 
+import com.Ejercicio._Prueba.interfaces.FamilyService;
 import com.Ejercicio._Prueba.models.Animal;
 import com.Ejercicio._Prueba.interfaces.AnimalService;
 
@@ -18,10 +19,14 @@ public class AnimalController{
 
     @Autowired
     private AnimalService as;
+    @Autowired
+    private FamilyService fs;
 
     @GetMapping("/animals")
     public String animales(Model model) {
         model.addAttribute("animales", as.getAnimals());
+        model.addAttribute("familias", fs.getFamilies());
+        //También tengo que saber a que familia pertenece
         return "Animals/animals";
     }
 
@@ -39,7 +44,8 @@ public class AnimalController{
     @GetMapping("/animals/create")
     public String crearAnimal(Model model){
         model.addAttribute("animal", new Animal());
-        return "Animals/create";
+        model.addAttribute("familias", fs.getFamilies());
+        return "animals/create";
     }
 
     @PostMapping("/animals/create")
@@ -47,6 +53,11 @@ public class AnimalController{
         if(bindingResult.hasErrors()){
             return "Animals/create";
         }else{
+            if(animal.getFamily() != null && animal.getFamily().getId() == 0){
+                animal.setFamily(null);
+            }else if(animal.getFamily() != null){
+                animal.setFamily(fs.getFamily(animal.getFamily().getId()));
+            }
             as.addAnimal(animal);
             //return "/animals";
             return "redirect:/animals/details/" + animal.getId();
@@ -56,6 +67,7 @@ public class AnimalController{
     @GetMapping("/animals/edit/{id}")
     public String EditarAnimal(Model model, @PathVariable int id){
         model.addAttribute("animal", as.getAnimal(id));
+        model.addAttribute("familias", fs.getFamilies());
         return "Animals/edit";
     }
 
@@ -65,6 +77,11 @@ public class AnimalController{
         if(bindingResult.hasErrors()){
             resultado = "Animals/edit";
         }else{
+            if(animal.getFamily() != null && animal.getFamily().getId() == 0){
+                animal.setFamily(null);
+            }else if(animal.getFamily() != null){
+                animal.setFamily(fs.getFamily(animal.getFamily().getId()));
+            }
             as.editAnimal(animal);
         }
         return resultado;
