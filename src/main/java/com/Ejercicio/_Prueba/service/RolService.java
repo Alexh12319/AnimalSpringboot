@@ -19,7 +19,7 @@ public class RolService {
 
 
 
-    //TODO: Listar roles por lista
+
     public List<Role> findAll() {
         return roleRepository.findAll();
     }
@@ -29,7 +29,7 @@ public class RolService {
     }
 
     public Role create(String name) {
-        if (roleRepository.findByName(name).isPresent()) {
+        if (roleRepository.findByName(name).isPresent()) { //Basicamente es como "Si ya existe"
             throw new IllegalArgumentException("El rol " + name + " ya existe");
         }
         return roleRepository.save(new Role(name));

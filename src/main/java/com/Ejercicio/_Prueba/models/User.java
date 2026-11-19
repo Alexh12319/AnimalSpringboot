@@ -29,7 +29,7 @@ public class User {
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    private ArrayList<Role> roles;
+    private ArrayList<Role> roles = new ArrayList<>();
 
     public User(){};
 

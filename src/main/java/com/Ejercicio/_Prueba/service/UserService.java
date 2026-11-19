@@ -5,13 +5,11 @@ import com.Ejercicio._Prueba.models.User;
 import com.Ejercicio._Prueba.repository.UserRepository;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 
@@ -31,7 +29,11 @@ public class UserService implements UserDetailsService {
         User user = userRepository.findByemail(username).orElseThrow(() -> new UsernameNotFoundException("Ususario no encontrado"));
                     //Lo SACA DE LA BD                    o da error y lanza excepcion
 
-        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>(); //Lista authorities
+
+        for(int i = 0; i < user.getRoles().size(); i++){
+            authorities.add(new SimpleGrantedAuthority(user.getRoles().get(i).getName()));
+        }
 
         //authorities.add(new SimpleGrantedAuthority()); TODO user y admin
 
