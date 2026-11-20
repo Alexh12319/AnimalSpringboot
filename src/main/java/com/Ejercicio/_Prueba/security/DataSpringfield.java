@@ -1,7 +1,6 @@
 package com.Ejercicio._Prueba.security;
 
 import com.Ejercicio._Prueba.models.Role;
-import com.Ejercicio._Prueba.service.RolService;
 import com.Ejercicio._Prueba.repository.RoleRepository;
 import com.Ejercicio._Prueba.repository.UserRepository;
 import com.Ejercicio._Prueba.service.UserService;
@@ -14,11 +13,9 @@ public class DataSpringfield {
     RoleRepository roleRepository;
     UserRepository userRepository;
 
-    RolService roleService;
     UserService userService;
 
-    public DataSpringfield(RoleRepository roleRepository, RolService roleService, UserRepository userRepository, UserService userService){
-        this.roleService = roleService;
+    public DataSpringfield(RoleRepository roleRepository, UserRepository userRepository, UserService userService){
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.userService = userService;
@@ -36,15 +33,17 @@ public class DataSpringfield {
                 roleRepository.save(new Role("ROLE_ADMIN"));
             }
 
-            Role roleUser = roleService.findByName("ROLE_USER").orElseThrow();
 
-            /* TODO: HACER UNA VEZ HECHO EL crear usuario EN EL USER SERVICE
-            if(!(userRepository.findByemail("user@springfield.com").isPresent())){
-                //TODO: Aqui crear ususario del service
+            if((userRepository.findByemail("user@springfield.com").isEmpty())){
+                userService.createUser("Usuario", "Springfield", "user123","user@springfield.com", "ROLE_USER");
             }
-            */
 
-            Role roleAdmin = roleService.findByName("ROLE_ADMIN").orElseThrow();
+            if((userRepository.findByemail("admin@springfield.com").isEmpty())){
+                userService.createUser("Admin", "Springfield", "admin123", "admin@springfield.com", "ROLE_ADMIN");
+            }
+
+
+
         };
 
     }

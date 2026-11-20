@@ -41,6 +41,13 @@ public class User {
         this.password = password;
         this.roles = roles;
     }
+    //Para el metodo de crear usuario en el service
+    public User(String nombre, String apellidos, String email, String password) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.email = email;
+        this.password = password;
+    }
 
     public Long getId() {
         return id;
@@ -65,6 +72,7 @@ public class User {
     public ArrayList<Role> getRoles() {
         return roles;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
